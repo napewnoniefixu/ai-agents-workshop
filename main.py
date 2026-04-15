@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from google import genai
+from utils import print_token_usage
 
 load_dotenv()
 api_key = os.environ.get("GEMINI_API_KEY")
@@ -14,3 +15,4 @@ response = client.models.generate_content(
 )
 
 print(response.text)
+print_token_usage(response)
