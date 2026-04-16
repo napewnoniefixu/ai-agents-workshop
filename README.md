@@ -30,14 +30,24 @@ python3 main.py USER_PROMPT
 
 1. Zaimportuj `types` z `google.genai`
 2. Utwórz listę `messages`, gdzie elementy są typu `types.Content`
-3. Dodaj jedną wiadomość:
+   ```python
+   messages=[
+           types.Content(
+            role="user",
+            parts=[
+                types.Part(text=user_input)
+            ]
+        )
+    ]
+   ```
+   Dodaj jedną wiadomość:
     - rola: "user"
     - treść: prompt użytkownika
-4. Przekaż messages do `generate_content()` zamiast stringa
+3. Przekaż messages do `generate_content()` zamiast stringa
 
 ### Zadanie 4
 Stwórz nowy folder `functions` i w nim plik o nazwie `get_files_info.py`. 
-Zaimplementuj funkcję `def get_files_info(directory_path: str) -> str: `, która:
+Zaimplementuj funkcję `def get_files_info(working_directory:str, directory_path: str) -> str: `, która:
 - przyjmuje ścieżkę do katalogu
 - zwraca listę plików wraz z ich metadanymi (nazwa + rozmiar) w formacie ` f"- {content}: file_size={size} bytes, is_dir={is_dir}\n"`
 
