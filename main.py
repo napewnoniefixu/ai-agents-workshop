@@ -3,6 +3,7 @@ import sys
 from dotenv import load_dotenv
 from google import genai
 from utils import print_token_usage
+from google.genai import types
 
 load_dotenv()
 api_key = os.environ.get("GEMINI_API_KEY")
@@ -17,9 +18,18 @@ def main():
 
     user_input = " ".join(sys.argv[1:])
 
+    messages = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part(text=user_input)
+            ]
+        )
+    ]
+
     response = client.models.generate_content(
         model=model,
-        contents=user_input,
+        contents=messages, # 👈 zamiast stringa
     )
 
     print(response.text)
