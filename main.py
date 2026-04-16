@@ -5,6 +5,7 @@ from google import genai
 from utils import print_token_usage
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
+from functions.write_file import write_file
 
 load_dotenv()
 api_key = os.environ.get("GEMINI_API_KEY")
@@ -29,4 +30,4 @@ def main():
 
 if __name__ == "__main__":
     # main()
-    print(get_file_content(".", "utils.py"))
+    print(write_file(".", "test.txt", "Lorem ipsum"))
